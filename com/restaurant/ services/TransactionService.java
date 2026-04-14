@@ -1,15 +1,20 @@
 package com.restaurant.services;
+import com.restaurant.users.User;
 
 public class TransactionService {
 
     //Dine-in
-    public double calcTotal(double price) {
-        return price; 
+    public double calcTotal(User user, double price) {
+        double discount = user.getDiscount(price); // Calling Member 1's method
+        double finalPrice = price - discount;
+        System.out.println("Applying discount for " + user.getUsername() + ": -$" + discount);
+        return finalPrice;
     }
 
-    //Delivery (adds fee)
-    public double calcTotal(double price, double deliveryFee) {
-        return price + deliveryFee;
+    //delivery
+    public double calcTotal(User user, double price, double deliveryFee) {
+        double priceAfterDiscount = calcTotal(user, price); 
+        return priceAfterDiscount + deliveryFee;
     }
 
     //Payment method with Exception Handling
