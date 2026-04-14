@@ -1,4 +1,4 @@
-package logic;
+package com.restaurant.menu;
 
 import model.Order;
 import java.io.Serializable;
