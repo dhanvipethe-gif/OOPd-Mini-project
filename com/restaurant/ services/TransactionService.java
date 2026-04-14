@@ -1,35 +1,26 @@
 package com.restaurant.services;
+
 import com.restaurant.users.User;
 
 public class TransactionService {
+    private PaymentProcessor processor = new PaymentProcessor();
 
-    //Dine-in
-    public double calcTotal(User user, double price) {
-        double discount = user.getDiscount(price); // Calling Member 1's method
-        double finalPrice = price - discount;
-        System.out.println("Applying discount for " + user.getUsername() + ": -$" + discount);
-        return finalPrice;
+    // Overload 1: Dine-in (Simple)
+    public void processOrder(User user, double amount) throws PaymentException {
+        // Calls Member 1's getDiscount method
+        double finalAmount = user.getDiscount(amount);
+        
+        System.out.println("--- Processing Dine-in Order ---");
+        // We assume a sample balance for this demo
+        processor.processPayment(finalAmount, 1000.0); 
     }
 
-    //delivery
-    public double calcTotal(User user, double price, double deliveryFee) {
-        double priceAfterDiscount = calcTotal(user, price); 
-        return priceAfterDiscount + deliveryFee;
-    }
-
-    //Payment method with Exception Handling
-    public void processPayment(double amount, double balance) throws InsufficientFundsException {
-        try {
-            System.out.println("Processing payment of: " + amount);
-            if (amount > balance) {
-                throw new InsufficientFundsException("Error: Balance is too low!");
-            }
-            System.out.println("Payment successful! Remaining: " + (balance - amount));
-        } catch (InsufficientFundsException e) {
-            System.out.println("Caught in Service: " + e.getMessage());
-            throw e; // Rethrowing to let the UI know
-        } finally {
-            System.out.println("Transaction log updated."); // Always executes
-        }
+    // Overload 2: Delivery (Includes an extra parameter for address)
+    public void processOrder(User user, double amount, String address) throws PaymentException {
+        double deliveryFee = 40.0;
+        double finalAmount = user.getDiscount(amount) + deliveryFee;
+        
+        System.out.println("--- Processing Delivery Order to: " + address + " ---");
+        processor.processPayment(finalAmount, 1000.0);
     }
 }
