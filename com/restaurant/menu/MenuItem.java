@@ -1,4 +1,4 @@
-package model;
+package com.restaurant.menu;
 
 import java.io.Serializable;
 
