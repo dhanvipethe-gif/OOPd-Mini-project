@@ -1,4 +1,4 @@
-package gui;
+package com.restaurant.menu;
 
 import logic.BillingEngine;
 import logic.BookingEngine;
