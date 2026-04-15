@@ -1,4 +1,4 @@
-package com.restaurant.menu;
+package model;
 
 import java.time.Month;
 

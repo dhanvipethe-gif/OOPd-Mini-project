@@ -1,4 +1,4 @@
-package com.restaurant.menu;
+package model;
 
 /**
  * Level 2 of Multilevel Inheritance: MenuItem → SpecialtyItem

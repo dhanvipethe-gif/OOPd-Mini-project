@@ -1,4 +1,4 @@
-package com.restaurant.menu;
+package logic;
 
 import model.MenuItem;
 import java.util.List;
