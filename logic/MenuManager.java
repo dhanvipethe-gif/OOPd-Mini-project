@@ -1,5 +1,6 @@
 package logic;
 
+import model.MenuItem;
 
 
 import java.io.*;
