@@ -10,7 +10,7 @@ public class TransactionService {
         // Calls Member 1's getDiscount method
         double finalAmount = user.getDiscount(amount);
         
-        System.out.println("--- Processing Dine-in Order ---");
+        System.out.println("--- Processing Dine-in Order for " + user.getUsername() + " ---");
         // We assume a sample balance for this demo
         processor.processPayment(finalAmount, 1000.0); 
     }
@@ -20,7 +20,8 @@ public class TransactionService {
         double deliveryFee = 40.0;
         double finalAmount = user.getDiscount(amount) + deliveryFee;
         
-        System.out.println("--- Processing Delivery Order to: " + address + " ---");
+        System.out.println("--- Processing Delivery Order for " + user.getUsername() + " ---");
+        System.out.println("Address: " + address);
         processor.processPayment(finalAmount, 1000.0);
     }
 }
